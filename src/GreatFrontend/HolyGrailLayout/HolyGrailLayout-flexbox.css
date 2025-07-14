@@ -1,0 +1,72 @@
+/* Flexbox Implementation of Holy Grail Layout */
+
+body {
+    font-family: sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+    margin: 0;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+/* Main Container */
+.layout {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Header */
+header {
+    height: 60px;
+    padding: 12px;
+    background-color: tomato;
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+/* Content Area (Navigation, Main, Sidebar) */
+.content {
+    display: flex;
+    flex: 1;
+    min-height: 0; /* Prevents overflow issues */
+}
+
+/* Navigation Column */
+nav {
+    width: 100px;
+    padding: 12px;
+    background-color: coral;
+    flex-shrink: 0;
+    overflow-y: auto;
+}
+
+/* Main Content Column */
+main {
+    flex: 1;
+    padding: 12px;
+    background-color: moccasin;
+    overflow-y: auto;
+}
+
+/* Sidebar Column */
+aside {
+    width: 100px;
+    padding: 12px;
+    background-color: sandybrown;
+    flex-shrink: 0;
+    overflow-y: auto;
+}
+
+/* Footer */
+footer {
+    height: 100px;
+    padding: 12px;
+    background-color: slategray;
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+} 

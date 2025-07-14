@@ -1,0 +1,40 @@
+/* Default Light Mode */
+body {
+    background-color: #fff;
+    color: #333;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  
+  .light-mode {
+    background-color: #fff;
+    color: #333;
+  }
+  
+  .dark-mode {
+    background-color: #333;
+    color: #fff;
+  }
+  
+  /* DarkLightMode component styling */
+  .dark-light-mode {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+  }
+  
+  button {
+    padding: 10px 20px;
+    background-color: #4caf50;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  button:hover {
+    background-color: #45a049;
+  }
+  

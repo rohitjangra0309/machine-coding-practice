@@ -1,0 +1,62 @@
+/* CSS Grid Implementation of Holy Grail Layout */
+
+body {
+    font-family: sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+    margin: 0;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+/* Grid Container */
+.layout {
+    display: grid;
+    grid-template-areas: 
+        "header header header"
+        "nav main aside"
+        "footer footer footer";
+    grid-template-rows: 60px 1fr 100px;
+    grid-template-columns: 100px 1fr 100px;
+    min-height: 100vh;
+}
+
+/* Grid Items */
+header {
+    grid-area: header;
+    padding: 12px;
+    background-color: tomato;
+    display: flex;
+    align-items: center;
+}
+
+nav {
+    grid-area: nav;
+    padding: 12px;
+    background-color: coral;
+    overflow-y: auto;
+}
+
+main {
+    grid-area: main;
+    padding: 12px;
+    background-color: moccasin;
+    overflow-y: auto;
+}
+
+aside {
+    grid-area: aside;
+    padding: 12px;
+    background-color: sandybrown;
+    overflow-y: auto;
+}
+
+footer {
+    grid-area: footer;
+    padding: 12px;
+    background-color: slategray;
+    display: flex;
+    align-items: center;
+} 

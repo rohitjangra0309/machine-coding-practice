@@ -1,0 +1,54 @@
+body {
+    font-family: sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+    margin: 0;
+  }
+  
+  * {
+    box-sizing: border-box;
+  }
+  
+  .layout {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+  }
+  
+  header,
+  footer {
+    padding: 12px;
+    background-color: tomato;
+  }
+  
+  footer {
+    background-color: slategray;
+  }
+  
+  .content {
+    display: flex;
+    flex: 1;
+    min-height: 0; /* helps avoid overflow issues */
+  }
+  
+  nav {
+    width: 150px;
+    padding: 12px;
+    background-color: coral;
+    flex-shrink: 0;
+  }
+  
+  main {
+    flex: 1;
+    padding: 12px;
+    background-color: moccasin;
+    overflow-y: auto;
+  }
+  
+  aside {
+    width: 150px;
+    padding: 12px;
+    background-color: sandybrown;
+    flex-shrink: 0;
+  }
+  

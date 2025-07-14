@@ -1,0 +1,28 @@
+.outerContainer{
+    display: flex;
+    flex-direction: row;
+}
+
+.leftDiv{
+    display: flex;
+    flex-direction: column;
+    background-color: aqua;
+    height: 250px;
+    width: 250px;
+    margin-right: 20px;
+}
+
+.centerDiv{
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+}
+
+.rightDiv{
+    display: flex;
+    flex-direction: column;
+    background-color: yellowgreen;
+    height: 250px;
+    width: 250px;
+    margin-right: 20px;
+}

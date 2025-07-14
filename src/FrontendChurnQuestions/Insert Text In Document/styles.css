@@ -1,0 +1,16 @@
+@keyframes highlight {
+    0% { 
+      background-color: lightblue;
+    }
+    100% {
+      background-color: transparent;
+    }
+  }
+  
+  .highlighted {
+    animation: highlight 2s ease-in-out;
+    padding: 5px;
+    border-radius: 5px;
+    margin-bottom: 5px;
+  }
+  

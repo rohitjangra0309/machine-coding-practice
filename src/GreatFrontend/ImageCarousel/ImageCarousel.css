@@ -1,0 +1,385 @@
+/* ===== IMAGE CAROUSEL COMPONENT STYLES ===== */
+
+/* Main carousel container */
+.carousel {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 1rem;
+  font-family: 'Arial', sans-serif;
+  background-color: #f8f9fa;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Content wrapper containing image and navigation buttons */
+.carousel__content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  position: relative;
+}
+
+/* Image container with fixed dimensions */
+.carousel__image-wrapper {
+  width: 100%;
+  height: 400px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  background-color: #fff;
+  position: relative;
+}
+
+/* Loading state for image wrapper */
+.carousel__image-wrapper::before {
+  content: 'Loading...';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #666;
+  font-size: 1rem;
+  z-index: 1;
+}
+
+/* Main carousel image */
+.carousel__image {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  border-radius: 4px;
+  transition: opacity 0.3s ease;
+  z-index: 2;
+}
+
+/* Image loaded state */
+.carousel__image:loaded {
+  opacity: 1;
+}
+
+/* Loading spinner overlay */
+.carousel__spinner-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3;
+  border-radius: 8px;
+}
+
+/* Spinner container */
+.carousel__spinner {
+  position: relative;
+  width: 40px;
+  height: 40px;
+}
+
+/* Spinner ring animations */
+.carousel__spinner-ring {
+  position: absolute;
+  width: 32px;
+  height: 32px;
+  margin: 4px;
+  border: 3px solid transparent;
+  border-top: 3px solid #0066cc;
+  border-radius: 50%;
+  animation: carousel-spin 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+}
+
+.carousel__spinner-ring:nth-child(1) {
+  animation-delay: -0.45s;
+}
+
+.carousel__spinner-ring:nth-child(2) {
+  animation-delay: -0.3s;
+}
+
+.carousel__spinner-ring:nth-child(3) {
+  animation-delay: -0.15s;
+}
+
+/* Spinner animation keyframes */
+@keyframes carousel-spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Navigation buttons (prev/next) */
+.carousel__button {
+  background: rgba(255, 255, 255, 0.9);
+  border: 2px solid #e9ecef;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0.75rem 1rem;
+  color: #333;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 3;
+}
+
+/* Button hover effects */
+.carousel__button:hover:not(:disabled) {
+  background: #fff;
+  color: #0066cc;
+  transform: scale(1.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  border-color: #0066cc;
+}
+
+/* Button active state */
+.carousel__button:active:not(:disabled) {
+  transform: scale(0.95);
+}
+
+/* Disabled button state */
+.carousel__button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  background: rgba(255, 255, 255, 0.5);
+  color: #999;
+}
+
+/* Previous button positioning */
+.carousel__button--prev {
+  margin-right: 0.5rem;
+}
+
+/* Next button positioning */
+.carousel__button--next {
+  margin-left: 0.5rem;
+}
+
+/* Image counter display */
+.carousel__counter {
+  text-align: center;
+  font-size: 0.9rem;
+  color: #666;
+  margin: 0.5rem 0;
+  font-weight: 500;
+}
+
+/* Indicator dots container */
+.carousel__indicators {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0;
+  margin-top: 1rem;
+}
+
+/* Individual indicator dot */
+.carousel__indicator {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: #ccc;
+  border: 2px solid transparent;
+  cursor: pointer;
+  padding: 0;
+  transition: all 0.2s ease;
+  outline: none;
+}
+
+/* Active indicator dot */
+.carousel__indicator--active {
+  background-color: #0066cc;
+  border-color: #0066cc;
+  transform: scale(1.2);
+  box-shadow: 0 0 0 2px rgba(0, 102, 204, 0.2);
+}
+
+/* Indicator hover state */
+.carousel__indicator:hover:not(.carousel__indicator--active) {
+  background-color: #999;
+  transform: scale(1.1);
+}
+
+/* Indicator focus state for accessibility */
+.carousel__indicator:focus {
+  outline: 2px solid #0066cc;
+  outline-offset: 2px;
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+
+/* Tablet styles */
+@media (max-width: 768px) {
+  .carousel {
+    max-width: 100%;
+    padding: 0.5rem;
+  }
+  
+  .carousel__content {
+    gap: 0.5rem;
+  }
+  
+  .carousel__image-wrapper {
+    height: 300px;
+  }
+  
+  .carousel__button {
+    width: 40px;
+    height: 40px;
+    font-size: 1.2rem;
+    padding: 0.5rem;
+  }
+  
+  .carousel__indicator {
+    width: 10px;
+    height: 10px;
+  }
+}
+
+/* Mobile styles */
+@media (max-width: 480px) {
+  .carousel {
+    padding: 0.25rem;
+  }
+  
+  .carousel__content {
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+  
+  .carousel__image-wrapper {
+    height: 250px;
+  }
+  
+  .carousel__button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 35px;
+    height: 35px;
+    font-size: 1rem;
+  }
+  
+  .carousel__button--prev {
+    left: 10px;
+    margin-right: 0;
+  }
+  
+  .carousel__button--next {
+    right: 10px;
+    margin-left: 0;
+  }
+  
+  .carousel__indicators {
+    gap: 0.25rem;
+  }
+  
+  .carousel__indicator {
+    width: 8px;
+    height: 8px;
+  }
+}
+
+/* ===== DARK MODE SUPPORT ===== */
+@media (prefers-color-scheme: dark) {
+  .carousel {
+    background-color: #2d3748;
+    color: #e2e8f0;
+  }
+  
+  .carousel__image-wrapper {
+    background-color: #4a5568;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  }
+  
+  .carousel__button {
+    background: rgba(45, 55, 72, 0.9);
+    color: #e2e8f0;
+    border-color: #4a5568;
+  }
+  
+  .carousel__button:hover:not(:disabled) {
+    background: #4a5568;
+    color: #60a5fa;
+    border-color: #60a5fa;
+  }
+  
+  .carousel__indicator {
+    background-color: #4a5568;
+  }
+  
+  .carousel__indicator--active {
+    background-color: #60a5fa;
+    border-color: #60a5fa;
+    box-shadow: 0 0 0 2px rgba(96, 165, 250, 0.2);
+  }
+  
+  .carousel__counter {
+    color: #a0aec0;
+  }
+  
+  .carousel__spinner-overlay {
+    background: rgba(45, 55, 72, 0.8);
+  }
+  
+  .carousel__spinner-ring {
+    border-top-color: #60a5fa;
+  }
+}
+
+/* ===== ACCESSIBILITY IMPROVEMENTS ===== */
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .carousel__button,
+  .carousel__indicator,
+  .carousel__image {
+    transition: none;
+  }
+  
+  .carousel__spinner-ring {
+    animation: none;
+  }
+  
+  .carousel__spinner-overlay::after {
+    content: 'Loading...';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #333;
+    font-size: 14px;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .carousel__button {
+    border-width: 3px;
+  }
+  
+  .carousel__indicator {
+    border-width: 3px;
+  }
+}
+
+/* Focus styles for keyboard navigation */
+.carousel__button:focus,
+.carousel__indicator:focus {
+  outline: 3px solid #0066cc;
+  outline-offset: 2px;
+}

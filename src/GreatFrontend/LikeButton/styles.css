@@ -1,0 +1,24 @@
+.center-container {
+    display: flex;
+    justify-content: center; /* horizontal */
+    align-items: center;     /* vertical */
+    height: 100vh;           /* full viewport height */
+  }
+
+  .button {
+    height: 5vh;
+    width: 10vh;
+    background-color: white;
+}
+
+.button:hover:not(.buttonClicked) {
+    color: red;
+    border-color: red;
+}
+
+.buttonClicked {
+    background-color: red;
+    color: white;
+}
+
+  

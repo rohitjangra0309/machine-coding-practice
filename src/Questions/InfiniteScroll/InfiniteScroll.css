@@ -1,0 +1,32 @@
+/* Styling for the infinite scroll container */
+.infinite-scroll-container {
+  padding: 20px;
+  height: 400px;  /* Fixed height to make scrolling work */
+  overflow-y: auto;  /* Enable vertical scrolling */
+  border: 1px solid #ccc;
+  margin: 20px auto;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+}
+
+.loading {
+  text-align: center;
+  padding: 20px;
+  font-size: 18px;
+  color: #4caf50;
+}
+
+.no-more {
+  text-align: center;
+  padding: 20px;
+  font-size: 18px;
+  color: #ff5722;
+}
