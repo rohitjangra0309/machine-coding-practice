@@ -6,6 +6,7 @@ import { useState } from 'react'
 import Accordion from './July/GreatFrontend/Accordian/Accordian'
 import DataTable from './July/GreatFrontend/DataTable/DataTable'
 import ImageCarousel from './GreatFrontend/ImageCarousel/ImageCarousel'
+import MultipleFilters from './FrontendChurnQuestions/Multiple Filters/MultipleFilters'
 
 import './App.css'
 
@@ -97,7 +98,8 @@ const App = () => {
     <div>
       {/* <Accordion /> */}
       {/* <DataTable /> */}
-      <ImageCarousel images={images} />
+      {/* <ImageCarousel images={images} /> */}
+      <MultipleFilters />
     </div>
   )
 }

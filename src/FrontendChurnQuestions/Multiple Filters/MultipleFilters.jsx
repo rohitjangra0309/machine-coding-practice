@@ -1,88 +1,146 @@
 import React, { useState } from 'react';
-import { items as defaultItems } from './items';
+import { items } from './items';
+import './MultipleFilters.css';
 
-export default function MultipleFilters() {
+/**
+ * MultipleFilters Component - A product filtering interface
+ * 
+ * Features:
+ * - Multiple filter selection (toggle on/off)
+ * - Shows all items when no filters are active
+ * - Results count display
+ * 
+ * @component
+ */
+const MultipleFilters = () => {
+  // State to track which filters are currently active
   const [activeFilters, setActiveFilters] = useState([]);
 
-  const filters = ['Bags', 'Watches', 'Sports', 'Sunglasses'];
+  // Available filter categories (derived from items data)
+  const availableCategories = [...new Set(items.map(item => item.category))].sort();
 
-  const handleFilterClick = (filter) => {
-    setActiveFilters((prevFilters) =>
-      prevFilters.includes(filter)
-        ? prevFilters.filter((item) => item !== filter)
-        : [...prevFilters, filter]
-    );
+  /**
+   * Toggle a filter on/off
+   * If filter is active, remove it. If inactive, add it.
+   * 
+   * @param {string} filterCategory - The category to toggle
+   */
+  const toggleFilter = (filterCategory) => {
+    setActiveFilters(prevFilters => {
+      if (prevFilters.includes(filterCategory)) {
+        // Remove filter if it's already active
+        return prevFilters.filter(filter => filter !== filterCategory);
+      } else {
+        // Add filter if it's not active
+        return [...prevFilters, filterCategory];
+      }
+    });
   };
 
-  const filteredItems =
-    activeFilters.length > 0
-      ? defaultItems.filter((item) => activeFilters.includes(item.category))
-      : defaultItems;
+  /**
+   * Filter items based on active filters
+   * If no filters are active, show all items
+   * If filters are active, show only items that match ANY active filter
+   */
+  const filteredItems = activeFilters.length === 0 
+    ? items 
+    : items.filter(item => activeFilters.includes(item.category));
 
-  const buttonStyle = {
-    padding: '10px 20px',
-    border: '1px solid #ddd',
-    borderRadius: '5px',
-    backgroundColor: 'green',
-    cursor: 'pointer',
-    fontSize: '16px',
+  /**
+   * Clear all active filters
+   */
+  const clearAllFilters = () => {
+    setActiveFilters([]);
   };
 
-  const activeButtonStyle = {
-    ...buttonStyle,
-    backgroundColor: 'blue',
-    color: 'white',
-  };
-
-  const buttonsContainerStyle = {
-    display: 'flex',
-    gap: '10px',
-    justifyContent: 'center',
-    marginBottom: '20px',
-  };
-
-  const itemsContainerStyle = {
-    display: 'flex',
-    flexWrap: 'wrap',
-    gap: '20px',
-    justifyContent: 'center',
-  };
-
-  const itemStyle = {
-    padding: '10px',
-    border: '1px solid #ddd',
-    borderRadius: '5px',
-    width: '150px',
-    textAlign: 'center',
-  };
-
-  const categoryStyle = {
-    fontSize: '0.9em',
-    color: '#888',
+  /**
+   * Check if a filter is currently active
+   * @param {string} filterCategory - The category to check
+   * @returns {boolean} - True if the filter is active
+   */
+  const isFilterActive = (filterCategory) => {
+    return activeFilters.includes(filterCategory);
   };
 
   return (
-    <div>
-      <h2 style={{ textAlign: 'center' }}>Algochurn Filters</h2>
-      <div style={buttonsContainerStyle}>
-        {filters.map((filter, idx) => (
+    <div className="filters-container">
+      <h1 className="filters-title">Product Filters</h1>
+
+      {/* Filter Buttons */}
+      <div className="filter-buttons">
+        {availableCategories.map((category) => (
           <button
-            style={activeFilters.includes(filter) ? activeButtonStyle : buttonStyle}
-            key={`filters-${idx}`}
-            onClick={() => handleFilterClick(filter)}
+            key={category}
+            className={`filter-button ${isFilterActive(category) ? 'active' : ''}`}
+            onClick={() => toggleFilter(category)}
           >
-            {filter}
+            {category}
           </button>
         ))}
+        
+        {/* Clear All Filters Button */}
+        {activeFilters.length > 0 && (
+          <button
+            className="filter-button clear-all"
+            onClick={clearAllFilters}
+            style={{ 
+              backgroundColor: '#dc3545',
+              color: 'white',
+              borderColor: '#dc3545'
+            }}
+          >
+            Clear All
+          </button>
+        )}
       </div>
-      <div style={itemsContainerStyle}>
-        {filteredItems.map((item, idx) => (
-          <div key={`items-${idx}`} style={itemStyle}>
-            <p>{item.name}</p>
-            <p style={categoryStyle}>{item.category}</p>
-          </div>
-        ))}
+
+      {/* Results Count */}
+      <div className="results-count">
+        {activeFilters.length > 0 ? (
+          <span>
+            Showing {filteredItems.length} of {items.length} items
+            {activeFilters.length > 0 && (
+              <span> filtered by: {activeFilters.join(', ')}</span>
+            )}
+          </span>
+        ) : (
+          <span>Showing all {items.length} items</span>
+        )}
       </div>
+
+      {/* Items Display */}
+      {filteredItems.length > 0 ? (
+        <div className="items-container">
+          {filteredItems.map((item, index) => (
+            <div 
+              key={`${item.category}-${item.name}-${index}`}
+              className="item-card"
+            >
+              <h3 className="item-name">{item.name}</h3>
+              <p className="item-category">{item.category}</p>
+            </div>
+          ))}
+        </div>
+      ) : (
+        /* Empty State - when no items match the filters */
+        <div className="empty-state">
+          <h3>No items found</h3>
+          <p>Try adjusting your filters or clear all filters to see all items.</p>
+          <button 
+            className="filter-button"
+            onClick={clearAllFilters}
+            style={{
+              backgroundColor: '#007bff',
+              color: 'white',
+              borderColor: '#007bff'
+            }}
+          >
+            Clear All Filters
+          </button>
+        </div>
+      )}
     </div>
   );
-}
+};
+
+export default MultipleFilters;
