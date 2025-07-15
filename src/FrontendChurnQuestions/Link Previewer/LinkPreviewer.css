@@ -1,0 +1,100 @@
+/* Basic styling for Link Previewer component */
+
+.link-previewer-container {
+  padding: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.link-previewer-title {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.links-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.link-item {
+  position: relative;
+  display: inline-block;
+  width: fit-content;
+}
+
+.link-text {
+  color: #007bff;
+  text-decoration: underline;
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+}
+
+.link-text:hover {
+  background-color: #f8f9fa;
+}
+
+.preview-card {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 50;
+  width: 300px;
+  background-color: white;
+  border: 1px solid #ddd;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  padding: 16px;
+  margin-top: 8px;
+}
+
+.preview-image {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 4px;
+  margin-bottom: 12px;
+}
+
+.preview-title {
+  font-size: 16px;
+  font-weight: bold;
+  margin: 0 0 8px 0;
+  color: #333;
+}
+
+.preview-description {
+  font-size: 14px;
+  color: #666;
+  margin: 0 0 8px 0;
+  line-height: 1.4;
+}
+
+.preview-url {
+  font-size: 12px;
+  color: #999;
+  margin: 0;
+  text-decoration: none;
+}
+
+/* Basic responsive design */
+@media (max-width: 768px) {
+  .link-previewer-container {
+    padding: 15px;
+  }
+  
+  .preview-card {
+    width: 280px;
+    left: 0;
+    transform: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .preview-card {
+    width: 250px;
+  }
+} 

@@ -7,6 +7,9 @@ import Accordion from './July/GreatFrontend/Accordian/Accordian'
 import DataTable from './July/GreatFrontend/DataTable/DataTable'
 import ImageCarousel from './GreatFrontend/ImageCarousel/ImageCarousel'
 import MultipleFilters from './FrontendChurnQuestions/Multiple Filters/MultipleFilters'
+import LinkPreviewer from './FrontendChurnQuestions/Link Previewer/LinkPreviewer'
+import FolderStructure from './FrontendChurnQuestions/Folder Structure/FolderStructure'
+import FileExplorer from './July/GreatFrontend/FileExplorer/FileExplorer'
 
 import './App.css'
 
@@ -99,7 +102,10 @@ const App = () => {
       {/* <Accordion /> */}
       {/* <DataTable /> */}
       {/* <ImageCarousel images={images} /> */}
-      <MultipleFilters />
+      {/* <MultipleFilters /> */}
+      {/* <LinkPreviewer /> */}
+      {/* <FolderStructure /> */}
+      <FileExplorer />
     </div>
   )
 }

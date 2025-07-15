@@ -1,8 +1,21 @@
 import React, { useState } from "react";
+import "./FolderStructure.css";
 
-// **Folder structure data**
-const files = {
-  name: "root",
+/**
+ * FolderStructure Component - A file explorer tree view
+ * 
+ * Features:
+ * - Expandable/collapsible folders
+ * - Simple text indicators instead of icons
+ * - Clean recursive structure
+ * - Easy to understand and explain
+ * 
+ * @component
+ */
+
+// Sample folder structure data
+const fileSystemData = {
+  name: "my-project",
   isFolder: true,
   children: [
     {
@@ -10,10 +23,16 @@ const files = {
       isFolder: true,
       children: [
         { name: "App.js", isFolder: false },
-        { name: "Folder.js", isFolder: false },
-        { name: "data.js", isFolder: false },
-        { name: "Index.js", isFolder: false },
+        { name: "index.js", isFolder: false },
         { name: "styles.css", isFolder: false },
+        {
+          name: "components",
+          isFolder: true,
+          children: [
+            { name: "Header.js", isFolder: false },
+            { name: "Footer.js", isFolder: false },
+          ],
+        },
       ],
     },
     {
@@ -21,80 +40,92 @@ const files = {
       isFolder: true,
       children: [
         { name: "index.html", isFolder: false },
-        { name: "styles.css", isFolder: false },
+        { name: "favicon.ico", isFolder: false },
       ],
     },
     { name: "package.json", isFolder: false },
+    { name: "README.md", isFolder: false },
   ],
 };
 
-// **Function to get the correct file icon based on file type**
-const getFileIcon = (name) => {
-  if (name.endsWith(".js")) return "📜"; // JavaScript files
-  if (name.endsWith(".css")) return "🎨"; // CSS files
-  if (name.endsWith(".html")) return "📄"; // HTML files
-  if (name.endsWith(".json")) return "📝"; // JSON files
-  return "📁"; // Default folder icon
+/**
+ * Get file type indicator based on file extension
+ * @param {string} fileName - Name of the file
+ * @returns {string} - Simple text indicator
+ */
+const getFileType = (fileName) => {
+  if (fileName.endsWith(".js")) return "JS";
+  if (fileName.endsWith(".css")) return "CSS";
+  if (fileName.endsWith(".html")) return "HTML";
+  if (fileName.endsWith(".json")) return "JSON";
+  if (fileName.endsWith(".md")) return "MD";
+  return "FILE";
 };
 
-// **Recursive Folder Component**
-const Folder = ({ data, level = 0 }) => {
-  // **State to track whether the folder is open or closed**
-  const [isOpen, setIsOpen] = useState(false);
+/**
+ * FolderItem Component - Recursive component for each file/folder
+ * @param {Object} item - File or folder object
+ * @param {number} level - Nesting level for indentation
+ */
+const FolderItem = ({ item, level = 0 }) => {
+  // State to track if folder is expanded
+  const [isExpanded, setIsExpanded] = useState(false);
+
+  /**
+   * Toggle folder expansion
+   */
+  const toggleFolder = () => {
+    if (item.isFolder) {
+      setIsExpanded(!isExpanded);
+    }
+  };
 
   return (
-    <div style={{ marginLeft: level * 15 + "px" }}>
-      {/* **Folder or File Name** */}
+    <div>
+      {/* Main item */}
       <div
-        style={{
-          cursor: data.isFolder ? "pointer" : "default", // Only folders are clickable
-          fontWeight: data.isFolder ? "bold" : "normal",
-          color: data.isFolder ? "#007acc" : "#ccc", // Folder has blue text, files have gray text
-          display: "flex",
-          alignItems: "center",
-        }}
-        // **Clicking a folder toggles its open/close state**
-        onClick={() => data.isFolder && setIsOpen(!isOpen)}
+        className={`folder-item ${item.isFolder ? 'folder' : 'file'}`}
+        onClick={toggleFolder}
+        style={{ marginLeft: level * 20 + 'px' }}
       >
-        {/* **Display folder icon (open/close) or file icon** */}
-        {data.isFolder ? (isOpen ? "📂" : "📁") : getFileIcon(data.name)}
-
-        {/* **Display the name of the file/folder** */}
-        <span style={{ marginLeft: "5px" }}>{data.name}</span>
+        {/* Icon/indicator */}
+        <span className="folder-icon">
+          {item.isFolder ? (isExpanded ? '−' : '+') : getFileType(item.name)}
+        </span>
+        
+        {/* Name */}
+        <span className="folder-name">{item.name}</span>
       </div>
 
-      {/* **Render children if the folder is open** */}
-      {isOpen &&
-        data.isFolder &&
-        data.children.map((child, index) => (
-          <Folder key={index} data={child} level={level + 1} />
-        ))}
+      {/* Children (if folder is expanded) */}
+      {isExpanded && item.isFolder && item.children && (
+        <div className="folder-children">
+          {item.children.map((child, index) => (
+            <FolderItem
+              key={index}
+              item={child}
+              level={level + 1}
+            />
+          ))}
+        </div>
+      )}
     </div>
   );
 };
 
-// **Main Component that renders the folder structure**
+/**
+ * Main FolderStructure Component
+ */
 const FolderStructure = () => {
   return (
-    <div style={styles.container}>
-      <h3>📂 VS Code Folder Structure</h3>
-      <Folder data={files} />
+    <div className="folder-structure-container">
+      <h2 className="folder-structure-title">File Explorer</h2>
+      
+      <div className="folder-tree">
+        <FolderItem item={fileSystemData} />
+      </div>
     </div>
   );
-};
-
-// **CSS Styles (Inline)**
-const styles = {
-  container: {
-    fontFamily: "Arial, sans-serif",
-    maxWidth: "400px",
-    margin: "20px auto",
-    padding: "10px",
-    border: "1px solid #ddd",
-    borderRadius: "8px",
-    background: "#222", // Dark background (VS Code theme)
-    color: "#eee",
-  },
 };
 
 export default FolderStructure;

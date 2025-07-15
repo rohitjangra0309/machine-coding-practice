@@ -1,0 +1,83 @@
+/* Basic styling for Folder Structure component */
+
+.folder-structure-container {
+  max-width: 400px;
+  margin: 20px auto;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  font-family: Arial, sans-serif;
+}
+
+.folder-structure-title {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.folder-tree {
+  font-family: 'Courier New', monospace;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.folder-item {
+  display: flex;
+  align-items: center;
+  padding: 2px 0;
+  cursor: pointer;
+  border-radius: 4px;
+  padding: 4px 8px;
+  margin: 1px 0;
+}
+
+.folder-item:hover {
+  background-color: #e9ecef;
+}
+
+.folder-item.folder {
+  font-weight: bold;
+  color: #007acc;
+}
+
+.folder-item.file {
+  color: #666;
+  cursor: default;
+}
+
+.folder-item.file:hover {
+  background-color: transparent;
+}
+
+.folder-icon {
+  margin-right: 8px;
+  font-weight: bold;
+  min-width: 20px;
+}
+
+.folder-name {
+  user-select: none;
+}
+
+.folder-children {
+  margin-left: 20px;
+}
+
+/* Different file type colors */
+.file-js { color: #f7df1e; }
+.file-css { color: #1572b6; }
+.file-html { color: #e34f26; }
+.file-json { color: #000; }
+
+/* Basic responsive design */
+@media (max-width: 768px) {
+  .folder-structure-container {
+    margin: 10px;
+    padding: 15px;
+  }
+  
+  .folder-children {
+    margin-left: 15px;
+  }
+} 
