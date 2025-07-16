@@ -1,3 +1,55 @@
-.childPadding{
-    padding-left: 20px;
+.file-explorer {
+  font-family: Arial, sans-serif;
+  max-width: 500px;
+  margin: 20px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.file-explorer h2 {
+  margin-top: 0;
+  color: #333;
+}
+
+.file-item {
+  margin: 4px 0;
+}
+
+.item-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4px 8px;
+  cursor: pointer;
+}
+
+.item-content:hover {
+  background-color: #f0f0f0;
+}
+
+.item-name {
+  flex-grow: 1;
+  font-size: 14px;
+  color: #333;
+}
+
+.toggle-btn {
+  color: #666;
+  font-size: 12px;
+  cursor: pointer;
+  padding: 2px 4px;
+  border: 1px solid #ccc;
+  border-radius: 2px;
+  background-color: #f8f8f8;
+}
+
+.toggle-btn:hover {
+  background-color: #e0e0e0;
+}
+
+.children {
+  margin-left: 20px;
+  border-left: 1px solid #ddd;
+  padding-left: 10px;
 }
