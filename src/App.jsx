@@ -10,6 +10,17 @@ import MultipleFilters from './FrontendChurnQuestions/Multiple Filters/MultipleF
 import LinkPreviewer from './FrontendChurnQuestions/Link Previewer/LinkPreviewer'
 import FolderStructure from './FrontendChurnQuestions/Folder Structure/FolderStructure'
 import FileExplorer from './July/GreatFrontend/FileExplorer/FileExplorer'
+import NestedCheckBox from './Questions/NestedCheckBox/NestedCheckBox'
+import NestedCheckboxes from './July/GreatFrontend/NestedCheckboxes/NestedCheckboxes'
+import AutoCompleteSearch from './FinalListQuestions/AutoCompleteSearch/AutoCompleteSearch'
+import Modal from './FrontendChurnQuestions/Full Screen Modal Overlay/Modal'
+import StarRating from './GreatFrontend/StarRating/StarRating'
+import StarRating2 from './FinalListQuestions/StarRating/StarRating'
+import DataTable2 from './July/GreatFrontend/DataTable2/DataTable2'
+import ProgressBar from './Questions/ProgressBar/ProgressBar'
+import CrudApp from './July/GreatFrontend/CRUD/CrudApp'
+import DropdownSearch from './July/GreatFrontend/DropdownSearch/DropdownSearch'
+import Spinner from './July/GreatFrontend/Spinner/Spinner'
 
 import './App.css'
 
@@ -105,7 +116,18 @@ const App = () => {
       {/* <MultipleFilters /> */}
       {/* <LinkPreviewer /> */}
       {/* <FolderStructure /> */}
-      <FileExplorer />
+      {/* <FileExplorer /> */}
+      {/* <NestedCheckBox /> */}
+      {/* <NestedCheckboxes /> */}
+      {/* <AutoCompleteSearch /> */}
+      {/* <Modal /> */}
+      {/* <StarRating /> */}
+      {/* <StarRating2 /> */}
+      {/* <DataTable2 /> */}
+      {/* <ProgressBar /> */}
+      {/* <CrudApp /> */}
+      {/* <DropdownSearch /> */}
+      <Spinner />
     </div>
   )
 }

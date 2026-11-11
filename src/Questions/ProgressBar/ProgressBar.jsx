@@ -10,7 +10,7 @@ import './ProgressBar.css'
 // transform: `translateX(${value}%)`
 
 // ProgressBar component to display a progress bar with animation
-const ProgressBar = ({ value }) => {
+const ProgressBar2 = ({ value }) => {
     // State to hold the animated value (initial value is 0)
     const [animatedValue, setAnimatedValue] = useState(0);
 
@@ -35,6 +35,17 @@ const ProgressBar = ({ value }) => {
       </div>
     </div>
   );
+}
+
+const ProgressBar = () => {
+  const [value, setValue] = useState([10,20,30,40,50,60,70,80,90,100]);
+    return (
+        <div>
+            {value.map((item, index) => (
+                <ProgressBar2 key={index} value={item} />
+            ))}
+        </div>
+    )
 }
 
 export default ProgressBar;
